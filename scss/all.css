@@ -1,0 +1,280 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@700&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+body {
+  background-image: linear-gradient(174deg, #FFD370 2%, #FFD370 46%, #FFFFFF 46%, #FFFFFF 100%, #E8E8E8 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  max-width: 500px;
+}
+
+.container .title {
+  font-family: 'Baloo Tamma 2', cursive;
+  font-size: 48px;
+  line-height: 82px;
+  color: #333333;
+  letter-spacing: 8.75px;
+  text-align: center;
+  margin-top: 48px;
+  margin-bottom: 26px;
+}
+
+@media (max-width: 375px) {
+  .container .title {
+    font-size: 32px;
+    letter-spacing: 5.83px;
+  }
+}
+
+.container .input {
+  margin-bottom: 8px;
+}
+
+.container .input #text {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.7px;
+  border-radius: 10px;
+  border-style: none;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.container .input #text:focus, .container .input #text:active {
+  border: solid 1px #333333;
+}
+
+.container .input .addbtn {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: #333333;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.container .input .addbtn i {
+  color: #ffffff;
+}
+
+.container .panel {
+  width: 100%;
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.container .panel .subtitleList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .panel .subtitleList .subtitle {
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #9F9A91;
+  border-bottom: solid 1px #EFEFEF;
+  cursor: pointer;
+}
+
+.container .panel .subtitleList .subtitle.isActive {
+  border-bottom: solid 1px #333333;
+  color: #333333;
+}
+
+.container .panel .subtitleList h2 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  letter-spacing: 0.7px;
+}
+
+.container .panel .todoList {
+  padding: 0 16px;
+}
+
+.container .panel .todoList .todo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .panel .todoList .todo .checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  color: #FFD370;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.container .panel .todoList .todo .checkbox .check {
+  opacity: 0;
+}
+
+.container .panel .todoList .todo .content {
+  width: 392px;
+  font-size: 16px;
+  line-height: 58px;
+  color: #333333;
+  letter-spacing: 0.62px;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.container .panel .todoList .todo .delete {
+  width: 16px;
+  height: 16px;
+  color: #333333;
+  opacity: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 375px) {
+  .container .panel .todoList .todo .delete {
+    opacity: 1;
+  }
+}
+
+.container .panel .todoList .todo .done {
+  color: #FFD370;
+  width: 20px;
+  height: 20px;
+}
+
+.container .panel .todoList .todo:hover .delete {
+  opacity: 1;
+}
+
+.container .panel .todoList .todo.done .checkbox {
+  border: none;
+  cursor: initial;
+}
+
+.container .panel .todoList .todo.done .checkbox .check {
+  opacity: 1;
+}
+
+.container .panel .todoList .todo.done .content {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+  opacity: 0.3;
+}
+
+.container .panel .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  padding: 32px 20px;
+}
+
+.container .panel .footer .total {
+  color: #333333;
+}
+
+.container .panel .footer .clear {
+  color: #9F9A91;
+  cursor: pointer;
+}
+/*# sourceMappingURL=all.css.map */

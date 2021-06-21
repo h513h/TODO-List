@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="scss/all.css">
+    <title>TODO List</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">TODO LIST</h1>
+        <div class="input">
+            <input type="text" id="text" placeholder="新增代辦事項">
+            <div class="addbtn"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="panel">
+            <ul class="subtitleList">
+                <li class="subtitle isActive" id="all"><h2>全部</h2></li>
+                <li class="subtitle" id="todo"><h2>待完成</h2></li>
+                <li class="subtitle" id="done"><h2>已完成</h2></li>
+            </ul>
+            <ul class="todoList">
+            </ul>
+            <div class="footer">
+                <p class="total"><span class="num">0</span>個待完成項目</p>
+                <p class="clear">清除已完成項目</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- js -->
+    <script src="all.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+*{
+    box-sizing: border-box;
+    position: relative;
+    transition: all 0.3s;
+}
+
+
+body{
+    background-image: linear-gradient(174deg,$color_primary 2%,$color_primary 46%, #FFFFFF 46%, #FFFFFF 100%, #E8E8E8 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.container{
+    margin: 0 auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    max-width: 500px;
+
+    .title{
+        font-family: 'Baloo Tamma 2', cursive;
+        font-size: 48px;
+        line-height: 82px;
+        color: $color_black;
+        letter-spacing: 8.75px;
+        text-align: center;
+        margin-top: 48px;
+        margin-bottom: 26px;
+        @include mobile{
+            font-size: 32px;
+            letter-spacing: 5.83px;
+        }
+    }
+    .input{
+        margin-bottom: 8px;
+        #text{
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.7px;
+
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
+            &:focus,&:active{
+                border: solid 1px $color_black;
+            }
+            
+        }
+        .addbtn{
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            transform: translateY(-50%);
+
+            width: 40px;
+            height: 40px;
+
+            background-color: $color_black;
+            border-radius: 10px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            i{
+                color: #ffffff;
+            }
+        }
+    }
+    .panel{
+        width: 100%;
+        box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
+        border-radius: 10px;
+        overflow: hidden;
+
+        background-color: #fff;
+        .subtitleList{
+            display: flex;
+            .subtitle{
+                text-align: center;
+                flex: 1;
+                color: $color_gray;
+                border-bottom: solid 1px $color_lightGray;
+                cursor: pointer;
+                &.isActive{
+                    border-bottom: solid 1px $color_black;
+                    color: $color_black;
+                }
+            }            
+            h2{
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: bold;
+                padding-top: 16px;
+                padding-bottom: 16px;
+                letter-spacing: 0.7px;
+            }
+            
+                
+        }
+        .todoList{
+            padding: 0 16px;
+
+            .todo{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .checkbox{
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid $color_black;
+                    border-radius: 5px;
+                    color: $color_primary;
+                    cursor: pointer;
+                    margin-right: 16px;
+                    .check{
+                        opacity: 0;
+                    }
+                }
+
+                .content{
+                    width: 392px;
+    
+                    font-size: 16px;
+                    line-height: 58px;
+                    color: $color_black;
+                    letter-spacing: 0.62px;
+                    border-bottom: 1px solid $color_lightGray;
+                }
+                .delete{
+                    width: 16px;
+                    height: 16px;
+                    color: $color_black;
+                    opacity: 0;
+                    cursor: pointer;
+                    @include mobile{
+                        opacity: 1;
+                    }
+                }
+                .done{
+                    color: $color_primary;
+                    width: 20px;
+                    height: 20px;
+                }
+                &:hover{
+                    .delete{
+                        opacity: 1;
+                    }
+                }
+                &.done{
+                    .checkbox{
+                        border: none;
+                        cursor: initial;
+                        .check{
+                            opacity: 1;
+                        }
+                    }
+                    .content{
+                        text-decoration-line: line-through;
+                        opacity: 0.3;
+                    }
+                }
+            }
+        }
+        .footer{
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            letter-spacing: 0.7px;
+
+            padding: 32px 20px;
+            .total{
+                color: $color_black
+            }
+            .clear{
+                color: $color_gray;
+                cursor: pointer;
+            }
+        }
+    }
+}
