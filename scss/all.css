@@ -105,13 +105,15 @@ body {
   line-height: 24px;
   letter-spacing: 0.7px;
   border-radius: 10px;
-  border-style: none;
   -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #ffffff;
+  outline: none;
 }
 
 .container .input #text:focus, .container .input #text:active {
-  border: solid 1px #333333;
+  outline: none;
+  border: 1px solid #FFD370;
 }
 
 .container .input .addbtn {
