@@ -1,14 +1,6 @@
-const text = document.querySelector('#text');
-const addBtn = document.querySelector('.addbtn');
-const deleteBtn = document.querySelector('.delete');
-const todoList = document.querySelector('.todoList');
-const num = document.querySelector('.num');
-
-let todoListing = [];
-
 //無待辦事項時不顯示面板
 const panel = document.querySelector('.panel');
-function display(){
+function displayPanel(){
     if(todoListing.length === 0){
     panel.style.display = "none";
 }else{
@@ -16,6 +8,7 @@ function display(){
 }}
 
 // 計算待辦事項總數
+const num = document.querySelector('.num');
 function total(){
     let total = 0;
     todoListing.forEach(function(item,index){
@@ -27,30 +20,44 @@ function total(){
 }
 
 // 重新整理待辦事項
+const todoList = document.querySelector('.todoList');
+
+let todoListing = [];
+
 function listing(){
-    let str = "";
-    todoListing.forEach(function(item,index){
-        if(item.statu === "todo"){
-            str += 
-            `<li class="todo" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`
-        }else{
-            str += 
-            `<li class="todo done" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`
+
+    let displayList = [];
+
+    todoListing.forEach(function(i){
+        if(i.display === true){
+            displayList.push(i)
         }
+    })
+
+    let str = "";
+    let classAtr = ""
+
+    displayList.forEach(function(item,index){
+        if(item.statu === "todo"){
+            classAtr = 'todo'
+        }else{
+            classAtr = 'todo done'
+        }
+        str += 
+            `<li class="${classAtr}" data-num=${index}>
+            <div class="checkbox"><i class="fas fa-check check"></i></div>
+            <h3 class="content">${item.name}</h3>
+            <i class="fas fa-times delete"></i></li>`
     });
     todoList.innerHTML = str;
-    display()
+    displayPanel()
     total()
 }
-listing()
 
 // 新增
+const text = document.querySelector('#text');
+const addBtn = document.querySelector('.addbtn');
+
 addBtn.addEventListener("click",function(e){
     if(text.value == ""){
         alert('請輸入待辦事項');
@@ -59,6 +66,7 @@ addBtn.addEventListener("click",function(e){
         let obj = {};
         obj.name = text.value;
         obj.statu = 'todo';
+        obj.display = true;
         todoListing.push(obj);
         listing();
         total()
@@ -74,7 +82,7 @@ todoList.addEventListener("click",function(e){
         listing();
     }
     else if(e.target.getAttribute("class") === "fas fa-check check"){
-        todoListing[e.target.parentElement.parentElement.getAttribute("data-num")].statu = "done";
+        todoListing[e.target.parentElement.parentElement.getAttribute("data-num")].statu = 'done'
         listing()
     }
 })
@@ -88,65 +96,47 @@ clear.addEventListener("click",function(e){
         }
     })
     listing()
+    alert('已清除處理完事項')
 })
 
 // 分類及重新整理清單
 const lists = document.querySelector('.subtitleList');
-const all = document.querySelector('#all');
-const todo = document.querySelector('#todo');
-const done = document.querySelector('#done');
 
-lists.addEventListener("click",function(e){    
+let catalog = [{name : '全部', status: 'all', isActive: true},{name : '待完成', status: 'todo', isActive: false},{name : '已完成', status: 'done', isActive: false}];
+
+function catalogListing(){
+    let catalogStr = ""
+    let classAtr = ""
+    catalog.forEach(function(i,index){
+        if(i.isActive === true){
+            classAtr = "isActive"
+        }else{
+            classAtr = ""
+        }
+        catalogStr += `<li class="subtitle ${classAtr}" data-num=${index} data-status=${i.status}><h2>${i.name}</h2></li>`
+    })
+    lists.innerHTML = catalogStr;
+}
+catalogListing()
+
+lists.addEventListener("click",function(e){   
 
     // 分類   
-    if(e.target.parentElement.getAttribute('id') === "all"){
-        all.classList.add('isActive');
-        todo.classList.remove('isActive');
-        done.classList.remove('isActive');
-    }else if(e.target.parentElement.getAttribute('id') === "todo"){
-        all.classList.remove('isActive');
-        todo.classList.add('isActive');
-        done.classList.remove('isActive');
-    }else{
-        all.classList.remove('isActive');
-        todo.classList.remove('isActive');
-        done.classList.add('isActive');
-    }
+    catalog.forEach(function(i){
+        i.isActive = false;
+    })
+    catalog[e.target.parentElement.getAttribute("data-num")].isActive = true;
+    catalogListing()
     
     // 重新整理清單
-    let str = "";
-    todoListing.forEach(function(item,index){   
-        if(e.target.parentElement.getAttribute('id') === "all"){
-            if(item.statu === 'done'){
-                str += 
-            `<li class="todo done" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`
-            }else{
-             str += 
-            `<li class="todo" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`   
-            }
-            
-        }else if(e.target.parentElement.getAttribute('id') === item.statu){
-            if(item.statu === 'done'){
-                str += 
-            `<li class="todo done" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`
-            }else{
-             str += 
-            `<li class="todo" data-num=${index}>
-            <div class="checkbox"><i class="fas fa-check check"></i></div>
-            <h3 class="content">${item.name}</h3>
-            <i class="fas fa-times delete"></i></li>`   
-            }
+    displayList = [];
+    todoListing.forEach(function(i,index){ 
+        i.display = false
+        if(e.target.parentElement.getAttribute("data-status") === "all"){            
+            i.display = true
+        }else if(e.target.parentElement.getAttribute("data-status") === i.statu){
+            i.display = true
         }
+        listing()
     })
-    todoList.innerHTML = str;
-    total()
 });
